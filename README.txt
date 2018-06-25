@@ -1,4 +1,4 @@
-mindwave-py3 0.2-dev
+mindwave-py3 0.1-dev
 ## For new Pandas and Python 3, modified from https://github.com/akloster/python-mindwave
 
 pip install pyserial
