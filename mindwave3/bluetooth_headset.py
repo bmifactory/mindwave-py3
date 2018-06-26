@@ -17,7 +17,7 @@ def connect_bluetooth_addr(addr):
             raise
     return None
 
-def connect_magic():
+def connect_magic(addr):
     """ Tries to connect to the first MindWave Mobile it can find.
         If this computer hasn't connected to the headset before, you may need
         to make it visible to this computer's bluetooth adapter. This is done
@@ -25,10 +25,9 @@ def connect_magic():
         position until the blinking rythm switches.
 
         The address is then put in a file for later reference.
-
     """
+    return (connect_bluetooth_addr(addr), addr)
     #nearby_devices = bluetooth.discover_devices(lookup_names = True, duration=5)
-    return (connect_bluetooth_addr("24:71:89:EC:57:ED"), "24:71:89:EC:57:ED")
     #for addr, name in nearby_devices:
     #    if name == "MindWave Mobile":
     #        print("found")
