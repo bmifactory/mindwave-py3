@@ -29,7 +29,7 @@ from datetime import datetime
     You can add recorders to the parser, which take care of analyzing the parsed data.
     
     There is for example one recorder which converts the parsed data into Pandas
-    Timeseries. But doing that dozens of times per second is too much work for weak
+    Series. But doing that dozens of times per second is too much work for weak
     processors, like in the Raspberry Pi, so there you would probably derive your own
     parser.
 """
@@ -132,11 +132,6 @@ class ThinkGearParser(object):
 
 class TimeSeriesRecorder:
     def __init__(self, file_name=None):
-        #self.meditation = pd.TimeSeries()
-        #self.attention = pd.TimeSeries()
-        #self.raw = pd.TimeSeries()
-        #self.blink = pd.TimeSeries()
-        #self.poor_signal = pd.TimeSeries()
         self.meditation = pd.Series()
         self.attention = pd.Series()
         self.raw = pd.Series()
