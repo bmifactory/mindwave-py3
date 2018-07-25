@@ -3,9 +3,7 @@ import struct
 import time
 import pandas as pd
 from datetime import datetime
-
 """
-
     This interface library is designed to be used from very different contexts.
     The general idea is that the Mindwave modules in the headset (and other devices)
     talk a common binary protocol, which is entirely one-sided from headset to device/
@@ -158,10 +156,8 @@ class TimeSeriesRecorder:
             self.attention_queue.append(value)
             # Blink and "poor signal" is only sent when a blink or poor signal is detected
             # So fake continuous signal as zeros.
-            
             self.blink_queue.append(0)
             self.poor_signal_queue.append(0)
-            
         elif key == "meditation":
             self.meditation_queue.append(value)
         elif key == "raw":
@@ -170,11 +166,9 @@ class TimeSeriesRecorder:
             self.blink_queue.append(value)
             if len(self.blink_queue)>0:
                 self.blink_queue[-1] = self.current_blink_strength
- 
         elif key == "poor_signal":
             if len(self.poor_signal_queue)>0:
                 self.poor_signal_queue[-1] = a
-
         
     def record_meditation(self, attention):
         self.meditation_queue.append()
@@ -183,9 +177,8 @@ class TimeSeriesRecorder:
         self.blink_queue.append()
     
     def finish_chunk(self):
-        """ called periodically to update the timeseries """
+        """ called periodically to update the series """
         self.meditation = pd.concat([self.meditation, queue_to_series(self.meditation_queue, freq="s")])
-        
         self.attention = pd.concat([self.attention, queue_to_series(self.attention_queue, freq="s")])
         self.blink = pd.concat([self.blink, queue_to_series(self.blink_queue, freq="s")])
         self.raw = pd.concat([self.raw, queue_to_series(self.raw_queue, freq="1953U")])
@@ -200,4 +193,3 @@ class TimeSeriesRecorder:
             self.store['attention'] = self.attention
             self.store['meditation'] = self.meditation
             self.store['raw'] = self.raw
-
