@@ -54,6 +54,7 @@ class ThinkGearParser(object):
         for recorder in self.recorders:
             recorder.finish_chunk()
         #self.input_data += data
+
     def dispatch_data(self, key, value):
         for recorder in self.recorders:
             recorder.dispatch_data(key, value)
